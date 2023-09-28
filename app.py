@@ -215,3 +215,6 @@ def home():
     generated_titles = response.choices[0].text.strip().split('\n')
 
     return jsonify({'generated_titles': generated_titles})
+
+if __name__ == "__main__":
+    app.run(debug=True)
