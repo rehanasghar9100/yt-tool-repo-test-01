@@ -201,7 +201,7 @@ def home():
     popular_titles = filter_popular_videos(video_data_list)
 
     # Prepare the prompt for ChatGPT
-    prompt = f"Generate 10 SEO-based YouTube Video titles about the {keyword} and the sample titles are these {popular_titles}, please just gave me the titles."
+    prompt = f"Generate 2 SEO based short YouTube Video titles about the {keyword} and the sample titles are these {popular_titles}, please just give me the titles."
 
     # Call OpenAI to generate video titles
     response = openai.Completion.create(
