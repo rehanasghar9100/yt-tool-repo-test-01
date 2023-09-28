@@ -1,4 +1,4 @@
 flask_cors
-youtubesearchpython
+youtube-search-python
 pytube
 openai
