@@ -10,7 +10,8 @@ import openai
 
 # Initialize the Flask app
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app, resources={r"/": {"origins": "*"}})  # Allow all origins for testing
+# Enable CORS for all routes
 
 # Initialize OpenAI API with your provided API key
 openai.api_key = "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"
