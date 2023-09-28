@@ -11,7 +11,7 @@ import openai
 # Initialize the Flask app
 app = Flask(__name__)
 # Update CORS configuration to allow requests from geniezbase.com
-CORS(app, resources={r"/": {"origins": "https://geniezbase.com"}})
+CORS(app)
 
 # Initialize OpenAI API with your provided API key
 openai.api_key = "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"
