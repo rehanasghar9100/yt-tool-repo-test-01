@@ -15,7 +15,7 @@ app = Flask(__name__)
 CORS(app, resources={r"/": {"origins": "*"}})
 
 # Initialize OpenAI API with your provided API key
-openai.api_key = "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"
+openai.api_key = "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"
 
 # Define the search query and region code
 results_per_page = 30
