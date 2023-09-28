@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin  # Import cross_origin
 from flask_cors import CORS
 import os
 import json
@@ -10,8 +11,8 @@ import openai
 
 # Initialize the Flask app
 app = Flask(__name__)
-# Update CORS configuration to allow requests from geniezbase.com
-CORS(app)
+# Allow requests from geniezbase.com and set appropriate CORS headers
+CORS(app, origins="https://geniezbase.com")
 
 # Initialize OpenAI API with your provided API key
 openai.api_key = "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"
@@ -192,6 +193,7 @@ def remove_emojis_and_unicode(data):
     return cleaned_data
 
 @app.route('/', methods=['POST'])
+@cross_origin(origin='https://geniezbase.com', headers=['Content-Type', 'Access-Control-Allow-Origin'])
 def home():
     keyword = request.json.get('keyword')
 
@@ -216,10 +218,9 @@ def home():
 
     # Prepare the response
     response_data = {'generated_titles': generated_titles}
-    
+
     # Set the CORS headers
     response = jsonify(response_data)
-    response.headers.add('Access-Control-Allow-Origin', 'https://geniezbase.com')
 
     return response
 
