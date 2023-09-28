@@ -10,8 +10,8 @@ import openai
 
 # Initialize the Flask app
 app = Flask(__name__)
-CORS(app, resources={r"/": {"origins": "*"}})  # Allow all origins for testing
-# Enable CORS for all routes
+# Update CORS configuration to allow requests from geniezbase.com
+CORS(app, resources={r"/": {"origins": "https://geniezbase.com"}})
 
 # Initialize OpenAI API with your provided API key
 openai.api_key = "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"
@@ -214,7 +214,14 @@ def home():
 
     generated_titles = response.choices[0].text.strip().split('\n')
 
-    return jsonify({'generated_titles': generated_titles})
+    # Prepare the response
+    response_data = {'generated_titles': generated_titles}
+    
+    # Set the CORS headers
+    response = jsonify(response_data)
+    response.headers.add('Access-Control-Allow-Origin', 'https://geniezbase.com')
+
+    return response
 
 if __name__ == "__main__":
     app.run(debug=True)
